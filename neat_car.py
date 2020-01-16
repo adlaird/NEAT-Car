@@ -15,6 +15,7 @@ VELOCITY = 5
 COLOR = (0, 255, 0)
 
 RECT_POSITION = (150, 200, 20, 20)
+WIN_CIRCLE_POSITION = (250, 100)
 
 RUN = True
 while RUN:
@@ -29,6 +30,9 @@ while RUN:
     if Y_POSITION - RADIUS < RECT_POSITION[1] + RECT_POSITION[3] and Y_POSITION + RADIUS > RECT_POSITION[1]:
         if X_POSITION + RADIUS > RECT_POSITION[0] and X_POSITION - RADIUS < RECT_POSITION[0] + RECT_POSITION[2]:
             COLOR = (255, 0, 0)
+    
+    if X_POSITION == WIN_CIRCLE_POSITION[0] and Y_POSITION == WIN_CIRCLE_POSITION[1]:
+        print('win')
 
     KEYS = pygame.key.get_pressed()
 
@@ -57,6 +61,7 @@ while RUN:
     WIN.fill((255, 255, 255))
     pygame.draw.circle(WIN, COLOR, (X_POSITION, Y_POSITION), RADIUS)
     pygame.draw.rect(WIN, (0, 0, 255), RECT_POSITION)
+    pygame.draw.circle(WIN, (0, 255, 0), WIN_CIRCLE_POSITION, RADIUS)
     pygame.display.update()
 
 pygame.quit();
