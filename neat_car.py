@@ -12,14 +12,23 @@ X_POSITION = 50
 Y_POSITION = 50
 RADIUS = 10
 VELOCITY = 5
+COLOR = (0, 255, 0)
 
-run = True
-while run:
+RECT_POSITION = (150, 200, 20, 20)
+
+RUN = True
+while RUN:
     pygame.time.delay(50)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            run = False
+            RUN = False
+    
+    COLOR = (0, 255, 0)
+
+    if Y_POSITION - RADIUS < RECT_POSITION[1] + RECT_POSITION[3] and Y_POSITION + RADIUS > RECT_POSITION[1]:
+        if X_POSITION + RADIUS > RECT_POSITION[0] and X_POSITION - RADIUS < RECT_POSITION[0] + RECT_POSITION[2]:
+            COLOR = (255, 0, 0)
 
     KEYS = pygame.key.get_pressed()
 
@@ -39,14 +48,15 @@ while run:
         X_POSITION = SCREEN_WIDTH - RADIUS
     elif X_POSITION < 0 + RADIUS:
         X_POSITION = 0 + RADIUS
-    
+
     if Y_POSITION > SCREEN_WIDTH - RADIUS:
         Y_POSITION = SCREEN_WIDTH - RADIUS
     elif Y_POSITION < 0 + RADIUS:
         Y_POSITION = 0 + RADIUS
 
     WIN.fill((255, 255, 255))
-    pygame.draw.circle(WIN, (0, 255, 0), (X_POSITION, Y_POSITION), RADIUS)
+    pygame.draw.circle(WIN, COLOR, (X_POSITION, Y_POSITION), RADIUS)
+    pygame.draw.rect(WIN, (0, 0, 255), RECT_POSITION)
     pygame.display.update()
 
 pygame.quit();
