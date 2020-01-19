@@ -140,19 +140,19 @@ def test_genomes(gens, config):
 
             
             # UP
-            if output[0] == 1:
+            if output[0] > .5:
                 car.y -= velocity
             
             # RIGHT
-            if output[1] == 1:
+            if output[1] > .5:
                 car.x += velocity
 
             # DOWN
-            if output[2] == 1:
+            if output[2] > .5:
                 car.y += velocity
 
             # LEFT
-            if output[3] == 1:
+            if output[3] > .5:
                 car.x -= velocity
 
             if car.y - CAR_RADIUS < rect_position[1] + rect_position[3] and car.y + CAR_RADIUS > rect_position[1]:
