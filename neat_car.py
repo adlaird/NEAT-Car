@@ -153,10 +153,6 @@ def test_genomes(gens, config):
             # LEFT
             if output[3] > .5:
                 car.x -= velocity
-
-            if car.y - CAR_RADIUS < rect_position[1] + rect_position[3] and car.y + CAR_RADIUS > rect_position[1]:
-                if car.x + CAR_RADIUS > rect_position[0] and car.x - CAR_RADIUS < rect_position[0] + rect_position[2]:
-                    color = (255, 0, 0)
             
             if car.x == WIN_CIRCLE_POSITION[0] and car.y == WIN_CIRCLE_POSITION[1]:
                 print('SOLUTION FOUND')
