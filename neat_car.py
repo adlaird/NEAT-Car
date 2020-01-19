@@ -3,7 +3,7 @@ import random
 import os
 import neat
 import math
-# import pickle
+import pickle
 
 pygame.init()
 
@@ -113,7 +113,7 @@ def test_genomes(gens, config):
     keep_running = True
     while keep_running and len(cars) > 0:
         score += 1
-        pygame.time.delay(10)
+        pygame.time.delay(1)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -137,7 +137,6 @@ def test_genomes(gens, config):
                 continue
 
             output = networks[index].activate((distance_top, distance_right, distance_bottom, distance_left, distance_to_finish))
-
             
             # UP
             if output[0] > .5:
@@ -161,11 +160,7 @@ def test_genomes(gens, config):
             
             if car.x == WIN_CIRCLE_POSITION[0] and car.y == WIN_CIRCLE_POSITION[1]:
                 print('win')
-
-            # if car.x > SCREEN_WIDTH - CAR_RADIUS or car.x < 0 + CAR_RADIUS or car.y > SCREEN_WIDTH - CAR_RADIUS or car.y < 0 + CAR_RADIUS:
-            #     cars.pop(index)
-            #     genomes.pop(index)
-            #     networks.pop(index)
+                pickle.dump(networks[0], open("best.pickle", "wb"))
 
         win.fill((255, 255, 255))
         
@@ -197,9 +192,9 @@ def run(config_file):
     stats = neat.StatisticsReporter()
     pop.add_reporter(stats)
 
-    winner = pop.run(test_genomes, 100)
+    winner = pop.run(test_genomes, 10000)
 
-    # print('\nBest genome:\n{!s}'.format(winner))
+    print('\nBest genome:\n{!s}'.format(winner))
 
 if __name__ == '__main__':
     # Determine path to configuration file. This path manipulation is
