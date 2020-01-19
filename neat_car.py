@@ -159,8 +159,12 @@ def test_genomes(gens, config):
                     color = (255, 0, 0)
             
             if car.x == WIN_CIRCLE_POSITION[0] and car.y == WIN_CIRCLE_POSITION[1]:
-                print('win')
+                print('SOLUTION FOUND')
                 pickle.dump(networks[0], open("best.pickle", "wb"))
+                cars.pop(index)
+                genomes[index].fitness = 1000 - distance_to_finish
+                genomes.pop(index)
+                networks.pop(index)
 
         win.fill((255, 255, 255))
         
